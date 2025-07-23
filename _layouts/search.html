@@ -1,0 +1,21 @@
+---
+layout: page
+# The layout for Search page
+---
+{% include lang.html %}
+
+<div id="search-page" class="my-4">
+  <div class="search-bar d-flex align-items-center">
+    <i class="fas fa-search fa-fw me-2"></i>
+    <input
+      class="clean-search-input"
+      id="search-input"
+      type="search"
+      aria-label="search"
+      autocomplete="off"
+      placeholder="{{ site.data.locales[page.lang].search.hint | capitalize }}..."
+    >
+  </div>
+
+  <div id="search-results" class="mt-4"></div>
+</div>

@@ -9,3 +9,227 @@
 ';
 
 /* append your custom style below */
+
+/* general color settings */
+html:not([data-mode]),
+html[data-mode='light'] {
+  --main-bg: white;
+  --mask-bg: #c1c3c5;
+  --main-border-color: #f3f3f3;
+  --text-color: #34343c;
+  --text-muted-color: #757575;
+  --text-muted-highlight-color: inherit;
+  --heading-color: #2a2a2a;
+  --label-color: #585858;
+  --blockquote-border-color: #eeeeee;
+  --blockquote-text-color: #757575;
+  --link-color: #b26e00;
+  --link-underline-color: #dee2e6;
+  --button-bg: #ffffff;
+  --btn-border-color: #e9ecef;
+  --btn-backtotop-color: #686868;
+  --btn-backtotop-border-color: #f1f1f1;
+  --checkbox-color: #c5c5c5;
+  --checkbox-checked-color: #b26e00;
+  --site-title-color: rgb(62, 62, 62);
+  --site-subtitle-color: rgb(169, 104, 39);
+  --sidebar-bg: #eceeef;
+  --sidebar-border-color: #efefef;
+  --sidebar-muted-color: #252525;
+  --sidebar-active-color: #0e0e0e;
+  --sidebar-hover-bg: #171717a3;
+  --sidebar-btn-bg: white;
+  --sidebar-btn-color: #8e8e8e;
+  --avatar-border-color: white;
+  --topbar-bg: rgb(255, 255, 255, 0.7);
+  --topbar-text-color: rgb(120, 94, 94);
+  --search-border-color: rgb(240, 240, 240);
+  --search-icon-color: #c2c6cc;
+  --input-focus-border-color: #b8b8b8;
+  --post-list-text-color: dimgray;
+  --btn-patinator-text-color: #555555;
+  --btn-paginator-hover-color: var(--sidebar-bg);
+  --toc-highlight: #b26e00;
+  --toc-popup-border-color: lightgray;
+  --btn-share-color: gray;
+  --btn-share-hover-color: #cf8a1b;
+  --card-bg: white;
+  --card-hovor-bg: #e2e2e2;
+  --card-shadow: rgb(104, 104, 104, 0.05) 0 2px 6px 0,
+    rgba(211, 209, 209, 0.15) 0 0 0 1px;
+  --footnote-target-bg: lightcyan;
+  --tb-odd-bg: #fbfcfd;
+  --tb-border-color: #eaeaea;
+  --dash-color: silver;
+  --kbd-wrap-color: #bdbdbd;
+  --kbd-text-color: var(--text-color);
+  --kbd-bg-color: white;
+  --prompt-text-color: rgb(46, 46, 46, 0.77);
+  --prompt-tip-bg: rgb(123, 247, 144, 0.2);
+  --prompt-tip-icon-color: #03b303;
+  --prompt-info-bg: #e1f5fe;
+  --prompt-info-icon-color: #0070cb;
+  --prompt-warning-bg: rgb(255, 243, 205);
+  --prompt-warning-icon-color: #ef9c03;
+  --prompt-danger-bg: rgb(248, 215, 218, 0.56);
+  --prompt-danger-icon-color: #df3c30;
+  --tag-border: #dee2e6;
+  --tag-shadow: var(--btn-border-color);
+  --tag-hover: rgb(222, 226, 230);
+  --search-tag-bg: #f8f9fa;
+  --categories-border: rgba(0, 0, 0, 0.125);
+  --categories-hover-bg: var(--btn-border-color);
+  --categories-icon-hover-color: darkslategray;
+  --timeline-color: rgba(0, 0, 0, 0.075);
+  --timeline-node-bg: #c2c6cc;
+  --timeline-year-dot-color: #ffffff;
+  --language-border-color: #ececec;
+  --highlight-bg-color: #f6f8fa;
+  --highlighter-rouge-color: #3f596f;
+  --highlight-lineno-color: #9e9e9e;
+  --inline-code-bg: rgba(25, 25, 28, 0.05);
+  --code-color: #3a3a3a;
+  --code-header-text-color: #a3a3a3;
+  --code-header-muted-color: #e5e5e5;
+  --code-header-icon-color: #c9c8c8;
+  --clipboard-checked-color: #eaa940;
+}
+
+/* features */
+
+#sidebar {
+  background-image: url('/assets/img/ui/test4.jpg');
+  background-size: cover; // Scales image to fill sidebar
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#sidebar .site-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+#sidebar .site-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-style: normal !important;
+}
+
+#sidebar nav {
+  position: relative;
+}
+
+#sidebar-indicator {
+  position: absolute;
+  right: 5px;
+  width: 4px;
+  height: 40px; // default height, will be set by JS
+  background: #2f2f2f;
+  border-radius: 2px;
+  transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1), height 0.2s;
+  z-index: 2;
+  top: 0;
+  display: block;
+}
+
+.nav-item[data-sidebar-tab] {
+  position: relative;
+}
+
+// Remove previous ::after bar styles
+.nav-item-wrapper,
+.nav-item-wrapper::after,
+.nav-item:not(.active):hover .nav-item-wrapper::after,
+.nav-item:not(.active):focus-within .nav-item-wrapper::after,
+.nav-item.active .nav-item-wrapper::after {
+  /* No bar, handled by #sidebar-indicator */
+  display: none !important;
+}
+
+.nav-item-wrapper {
+  position: relative;
+}
+
+.nav-item-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 25%;
+  width: 4px;
+  height: 50%;
+  background: #000;
+  border-radius: 0px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+// Show bar on hover/focus only if not active
+.nav-item:not(.active):hover .nav-item-wrapper::after,
+.nav-item:not(.active):focus-within .nav-item-wrapper::after {
+  opacity: 1;
+}
+
+// Show bar on active only
+.nav-item.active .nav-item-wrapper::after {
+  opacity: 1;
+}
+
+.nav-item.active .nav-link {
+  background: none;
+  color: inherit;
+}
+
+#sidebar .nav-link,
+#sidebar .nav-item.active .nav-link,
+#sidebar .nav-link:hover,
+#sidebar .nav-link:focus {
+  background-color: transparent !important;
+}
+
+/* If there’s a border or box-shadow on active, remove it */
+#sidebar .nav-item.active .nav-link {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Smooth transition on color/filter */
+#sidebar .nav-link,
+#sidebar .nav-link span,
+#sidebar .nav-link i {
+  transition: filter 0.15s ease, color 0.15s ease;
+}
+
+/* When hovered OR active, darken */
+#sidebar .nav-link:hover span,
+#sidebar .nav-link:hover i,
+#sidebar .nav-item.active .nav-link span,
+#sidebar .nav-item.active .nav-link i {
+  filter: brightness(0.6) !important;
+}
+
+/* turn off image shimmer skeleton */
+.lazy-wrapper > .lazy-skeleton,
+.lazy-wrapper > .lazy-skeleton::before,
+.lazy-wrapper > .lazy-skeleton::after {
+  animation: none !important;
+  background-color: transparent !important;
+}
+
+.search-bar {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.25rem;
+}
+
+.clean-search-input {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  width: 100%;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.clean-search-input::placeholder {
+  color: #999;
+}

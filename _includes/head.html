@@ -76,6 +76,15 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ '/assets/css/:THEME.css' | replace: ':THEME', site.theme | relative_url }}">
 
+  <!-- Core theme scripts (lazy-load, image-swap, TOC, etc.) -->
+  <script
+    src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"
+    data-turbolinks-eval="false"
+  ></script>
+
+  <!-- Google Fonts: Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&display=swap" rel="stylesheet">
+
   <!-- Web Font -->
   <link rel="stylesheet" href="{{ site.data.origin[type].webfonts | relative_url }}">
 
@@ -98,8 +107,102 @@
   {% endif %}
 
   <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.js"></script>
+  <script>
+    Turbolinks.start();
+  </script>
 
-  <script src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"></script>
+  <script>
+    document.addEventListener('turbolinks:click', function (event) {
+      const url = new URL(event.data.url, window.location.origin);
+      const path = url.pathname;
+
+      // Add custom logic here:
+      // Disable Turbolinks for any URL under `/page/` or `/posts/`
+      const blockPrefixes = ['/page/', '/posts/', '/blog/', '/about/', '/search/'];
+      const shouldBlock = blockPrefixes.some((prefix) => path.startsWith(prefix));
+
+      if (shouldBlock) {
+        // Let the browser handle it normally (i.e. full reload)
+        event.preventDefault();
+        window.location.href = url.href;
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('turbolinks:load', function () {
+      const sidebar = document.getElementById('sidebar');
+      const indicator = document.getElementById('sidebar-indicator');
+      const nav = sidebar.querySelector('nav');
+      const tabs = Array.from(sidebar.querySelectorAll('[data-sidebar-tab]'));
+
+      // Normalize a path: strip trailing slashes, but keep "/" as "/"
+      function normalize(p) {
+        p = p.replace(/\/+$/, '');
+        return p === '' ? '/' : p;
+      }
+
+      const path = normalize(window.location.pathname);
+
+      // Build array of [tabElement, href] with normalized hrefs
+      const tabLinks = tabs.map((tab) => {
+        const hrefRaw = tab.querySelector('a.nav-link').getAttribute('href');
+        return [tab, normalize(hrefRaw)];
+      });
+
+      // 1) Find all tabs where path starts with href
+      const matches = tabLinks.filter(([tab, href]) => {
+        // always allow exact match
+        if (href === path) return true;
+        // prefix match, but never match root "/" as a prefix for everything
+        return href !== '/' && path.startsWith(href + '/');
+      });
+
+      // 2) Pick the longest-href match (best specificity)
+      let selectedTab = null;
+      if (matches.length) {
+        selectedTab = matches.sort((a, b) => b[1].length - a[1].length)[0][0];
+      } else {
+        // 3) Fallback: exact path match
+        const exact = tabLinks.find(([tab, href]) => href === path);
+        selectedTab = exact ? exact[0] : tabs[0];
+      }
+
+      // 4) Apply .active only to the chosen tab
+      tabs.forEach((tab) => tab.classList.toggle('active', tab === selectedTab));
+
+      // 5) Positioning logic
+      const rects = { nav: nav.getBoundingClientRect() };
+      function moveIndicatorTo(tab) {
+        if (!tab) return;
+        const rect = tab.getBoundingClientRect();
+        const navRect = rects.nav;
+        indicator.style.top = rect.top - navRect.top + 'px';
+        indicator.style.height = rect.height + 'px';
+      }
+
+      // INITIAL jump
+      moveIndicatorTo(selectedTab);
+
+      // AFTER paint: enable smooth transitions
+      requestAnimationFrame(() => {
+        indicator.classList.add('moving');
+      });
+
+      // 6) Event bindings
+      window.addEventListener('resize', () => moveIndicatorTo(selectedTab));
+      nav.addEventListener('mouseleave', () => moveIndicatorTo(selectedTab));
+      tabs.forEach((tab) => {
+        tab.addEventListener('mouseenter', () => moveIndicatorTo(tab));
+        tab.addEventListener('mouseleave', () => moveIndicatorTo(selectedTab));
+        tab.addEventListener('click', () => {
+          selectedTab = tab;
+          moveIndicatorTo(selectedTab);
+        });
+      });
+    });
+  </script>
 
   {% include js-selector.html lang=lang %}
 
