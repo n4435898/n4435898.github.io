@@ -82,6 +82,7 @@
     data-turbolinks-eval="false"
   ></script>
 
+
   <!-- Google Fonts: Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&display=swap" rel="stylesheet">
 
@@ -107,10 +108,8 @@
   {% endif %}
 
   <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.js"></script>
-  <script>
-    Turbolinks.start();
-  </script>
+   <script src="{{ '/assets/js/turbolinks.js' | relative_url }}"></script>
+<script>Turbolinks.start();</script>
 
   <script>
     document.addEventListener('turbolinks:click', function (event) {
