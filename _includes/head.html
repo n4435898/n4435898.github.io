@@ -132,27 +132,20 @@
   <script>
     document.addEventListener('turbolinks:load', function () {
       requestAnimationFrame(() => {
-        console.log('TURBOLINKS LOAD1');
         const sidebar = document.getElementById('sidebar');
         const indicator = document.getElementById('sidebar-indicator');
         if (!sidebar || !indicator) return;
-        console.log('GOT SIDEBAR');
 
         const nav = sidebar.querySelector('nav');
         if (!nav) return;
-        console.log('GOT NAV');
 
         const tabs = Array.from(sidebar.querySelectorAll('[data-sidebar-tab]'));
         if (tabs.length === 0) return;
-
-        console.log('MIDST CHECK 1');
 
         function normalize(p) {
           p = p.replace(/\/+$/, '');
           return p === '' ? '/' : p;
         }
-
-        console.log('MIDST CHECK 2');
 
         const path = normalize(window.location.pathname);
 
@@ -161,14 +154,10 @@
           return [tab, normalize(hrefRaw)];
         });
 
-        console.log('MIDST CHECK 3');
-
         const matches = tabLinks.filter(([tab, href]) => {
           if (href === path) return true;
           return href !== '/' && path.startsWith(href + '/');
         });
-
-        console.log('MIDST CHECK 4');
 
         let selectedTab = null;
         if (matches.length) {
@@ -177,8 +166,6 @@
           const exact = tabLinks.find(([tab, href]) => href === path);
           selectedTab = exact ? exact[0] : tabs[0];
         }
-
-        console.log('MIDST CHECK 5');
 
         tabs.forEach((tab) => tab.classList.toggle('active', tab === selectedTab));
 
@@ -191,14 +178,10 @@
           indicator.style.height = rect.height + 'px';
         }
 
-        console.log('MIDST CHECK 6');
-
         moveIndicatorTo(selectedTab);
         requestAnimationFrame(() => {
           indicator.classList.add('moving');
         });
-
-        console.log('MIDST CHECK 7');
 
         window.addEventListener('resize', () => moveIndicatorTo(selectedTab));
         nav.addEventListener('mouseleave', () => moveIndicatorTo(selectedTab));
