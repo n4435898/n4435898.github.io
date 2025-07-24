@@ -116,7 +116,7 @@
     document.addEventListener('turbolinks:click', function (event) {
       if (!event.data || !event.data.url) return;
 
-      const url = new URL(event.data.url, window.location.origin);
+      const url = new URL(event.data.url, window.locationf.origin);
       const path = url.pathname;
 
       const blockPrefixes = ['/page/', '/posts/', '/blog/', '/about/', '/search/'];
@@ -131,64 +131,84 @@
 
   <script>
     document.addEventListener('turbolinks:load', function () {
-      const sidebar = document.getElementById('sidebar');
-      const indicator = document.getElementById('sidebar-indicator');
-      if (!sidebar || !indicator) return; // exit early if not on a sidebar-enabled page
-
-      const nav = sidebar.querySelector('nav');
-      if (!nav) return;
-
-      const tabs = Array.from(sidebar.querySelectorAll('[data-sidebar-tab]'));
-
-      function normalize(p) {
-        p = p.replace(/\/+$/, '');
-        return p === '' ? '/' : p;
-      }
-
-      const path = normalize(window.location.pathname);
-
-      const tabLinks = tabs.map((tab) => {
-        const hrefRaw = tab.querySelector('a.nav-link').getAttribute('href');
-        return [tab, normalize(hrefRaw)];
-      });
-
-      const matches = tabLinks.filter(([tab, href]) => {
-        if (href === path) return true;
-        return href !== '/' && path.startsWith(href + '/');
-      });
-
-      let selectedTab = null;
-      if (matches.length) {
-        selectedTab = matches.sort((a, b) => b[1].length - a[1].length)[0][0];
-      } else {
-        const exact = tabLinks.find(([tab, href]) => href === path);
-        selectedTab = exact ? exact[0] : tabs[0];
-      }
-
-      tabs.forEach((tab) => tab.classList.toggle('active', tab === selectedTab));
-
-      const rects = { nav: nav.getBoundingClientRect() };
-      function moveIndicatorTo(tab) {
-        if (!tab) return;
-        const rect = tab.getBoundingClientRect();
-        const navRect = rects.nav;
-        indicator.style.top = rect.top - navRect.top + 'px';
-        indicator.style.height = rect.height + 'px';
-      }
-
-      moveIndicatorTo(selectedTab);
       requestAnimationFrame(() => {
-        indicator.classList.add('moving');
-      });
+        console.log('TURBOLINKS LOAD1');
+        const sidebar = document.getElementById('sidebar');
+        const indicator = document.getElementById('sidebar-indicator');
+        if (!sidebar || !indicator) return;
+        console.log('GOT SIDEBAR');
 
-      window.addEventListener('resize', () => moveIndicatorTo(selectedTab));
-      nav.addEventListener('mouseleave', () => moveIndicatorTo(selectedTab));
-      tabs.forEach((tab) => {
-        tab.addEventListener('mouseenter', () => moveIndicatorTo(tab));
-        tab.addEventListener('mouseleave', () => moveIndicatorTo(selectedTab));
-        tab.addEventListener('click', () => {
-          selectedTab = tab;
-          moveIndicatorTo(selectedTab);
+        const nav = sidebar.querySelector('nav');
+        if (!nav) return;
+        console.log('GOT NAV');
+
+        const tabs = Array.from(sidebar.querySelectorAll('[data-sidebar-tab]'));
+        if (tabs.length === 0) return;
+
+        console.log('MIDST CHECK 1');
+
+        function normalize(p) {
+          p = p.replace(/\/+$/, '');
+          return p === '' ? '/' : p;
+        }
+
+        console.log('MIDST CHECK 2');
+
+        const path = normalize(window.location.pathname);
+
+        const tabLinks = tabs.map((tab) => {
+          const hrefRaw = tab.querySelector('a.nav-link').getAttribute('href');
+          return [tab, normalize(hrefRaw)];
+        });
+
+        console.log('MIDST CHECK 3');
+
+        const matches = tabLinks.filter(([tab, href]) => {
+          if (href === path) return true;
+          return href !== '/' && path.startsWith(href + '/');
+        });
+
+        console.log('MIDST CHECK 4');
+
+        let selectedTab = null;
+        if (matches.length) {
+          selectedTab = matches.sort((a, b) => b[1].length - a[1].length)[0][0];
+        } else {
+          const exact = tabLinks.find(([tab, href]) => href === path);
+          selectedTab = exact ? exact[0] : tabs[0];
+        }
+
+        console.log('MIDST CHECK 5');
+
+        tabs.forEach((tab) => tab.classList.toggle('active', tab === selectedTab));
+
+        const rects = { nav: nav.getBoundingClientRect() };
+        function moveIndicatorTo(tab) {
+          if (!tab) return;
+          const rect = tab.getBoundingClientRect();
+          const navRect = rects.nav;
+          indicator.style.top = rect.top - navRect.top + 'px';
+          indicator.style.height = rect.height + 'px';
+        }
+
+        console.log('MIDST CHECK 6');
+
+        moveIndicatorTo(selectedTab);
+        requestAnimationFrame(() => {
+          indicator.classList.add('moving');
+        });
+
+        console.log('MIDST CHECK 7');
+
+        window.addEventListener('resize', () => moveIndicatorTo(selectedTab));
+        nav.addEventListener('mouseleave', () => moveIndicatorTo(selectedTab));
+        tabs.forEach((tab) => {
+          tab.addEventListener('mouseenter', () => moveIndicatorTo(tab));
+          tab.addEventListener('mouseleave', () => moveIndicatorTo(selectedTab));
+          tab.addEventListener('click', () => {
+            selectedTab = tab;
+            moveIndicatorTo(selectedTab);
+          });
         });
       });
     });
