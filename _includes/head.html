@@ -82,7 +82,6 @@
     data-turbolinks-eval="false"
   ></script>
 
-
   <!-- Google Fonts: Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&display=swap" rel="stylesheet">
 
@@ -108,21 +107,22 @@
   {% endif %}
 
   <!-- Scripts -->
-   <script src="{{ '/assets/js/turbolinks.js' | relative_url }}"></script>
-<script>Turbolinks.start();</script>
+  <script src="{{ '/assets/js/turbolinks.js' | relative_url }}"></script>
+  <script>
+    Turbolinks.start();
+  </script>
 
   <script>
     document.addEventListener('turbolinks:click', function (event) {
+      if (!event.data || !event.data.url) return;
+
       const url = new URL(event.data.url, window.location.origin);
       const path = url.pathname;
 
-      // Add custom logic here:
-      // Disable Turbolinks for any URL under `/page/` or `/posts/`
       const blockPrefixes = ['/page/', '/posts/', '/blog/', '/about/', '/search/'];
       const shouldBlock = blockPrefixes.some((prefix) => path.startsWith(prefix));
 
       if (shouldBlock) {
-        // Let the browser handle it normally (i.e. full reload)
         event.preventDefault();
         window.location.href = url.href;
       }
@@ -133,10 +133,13 @@
     document.addEventListener('turbolinks:load', function () {
       const sidebar = document.getElementById('sidebar');
       const indicator = document.getElementById('sidebar-indicator');
+      if (!sidebar || !indicator) return; // exit early if not on a sidebar-enabled page
+
       const nav = sidebar.querySelector('nav');
+      if (!nav) return;
+
       const tabs = Array.from(sidebar.querySelectorAll('[data-sidebar-tab]'));
 
-      // Normalize a path: strip trailing slashes, but keep "/" as "/"
       function normalize(p) {
         p = p.replace(/\/+$/, '');
         return p === '' ? '/' : p;
@@ -144,34 +147,26 @@
 
       const path = normalize(window.location.pathname);
 
-      // Build array of [tabElement, href] with normalized hrefs
       const tabLinks = tabs.map((tab) => {
         const hrefRaw = tab.querySelector('a.nav-link').getAttribute('href');
         return [tab, normalize(hrefRaw)];
       });
 
-      // 1) Find all tabs where path starts with href
       const matches = tabLinks.filter(([tab, href]) => {
-        // always allow exact match
         if (href === path) return true;
-        // prefix match, but never match root "/" as a prefix for everything
         return href !== '/' && path.startsWith(href + '/');
       });
 
-      // 2) Pick the longest-href match (best specificity)
       let selectedTab = null;
       if (matches.length) {
         selectedTab = matches.sort((a, b) => b[1].length - a[1].length)[0][0];
       } else {
-        // 3) Fallback: exact path match
         const exact = tabLinks.find(([tab, href]) => href === path);
         selectedTab = exact ? exact[0] : tabs[0];
       }
 
-      // 4) Apply .active only to the chosen tab
       tabs.forEach((tab) => tab.classList.toggle('active', tab === selectedTab));
 
-      // 5) Positioning logic
       const rects = { nav: nav.getBoundingClientRect() };
       function moveIndicatorTo(tab) {
         if (!tab) return;
@@ -181,15 +176,11 @@
         indicator.style.height = rect.height + 'px';
       }
 
-      // INITIAL jump
       moveIndicatorTo(selectedTab);
-
-      // AFTER paint: enable smooth transitions
       requestAnimationFrame(() => {
         indicator.classList.add('moving');
       });
 
-      // 6) Event bindings
       window.addEventListener('resize', () => moveIndicatorTo(selectedTab));
       nav.addEventListener('mouseleave', () => moveIndicatorTo(selectedTab));
       tabs.forEach((tab) => {
