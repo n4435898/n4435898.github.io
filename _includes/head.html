@@ -116,7 +116,7 @@
     document.addEventListener('turbolinks:click', function (event) {
       if (!event.data || !event.data.url) return;
 
-      const url = new URL(event.data.url, window.locationf.origin);
+      const url = new URL(event.data.url, window.location.origin);
       const path = url.pathname;
 
       const blockPrefixes = ['/page/', '/posts/', '/blog/', '/about/', '/search/'];
