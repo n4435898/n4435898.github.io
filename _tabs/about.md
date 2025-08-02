@@ -40,8 +40,6 @@ P.S. I post my contest performance on [my youtube](https://www.youtube.com/chann
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![LaTeX](https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white) | ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white) | ![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white) |
 
-- USACO Gold of 2024 December
-- ~~bish I have no accolades :(~~
 
 ### Goals and progress
 
