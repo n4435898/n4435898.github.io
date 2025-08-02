@@ -23,7 +23,7 @@ In a non-DAG graph, there’s a contradiction of a sorted sequence when a cycle 
 
 ## Kahn’s Algorithm (BFS version)
 
-We will apply the method explained earlier to now find the topologically sorted sequence. A good pseudocode algorithm is given on the [wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm). Basically, we do a BFS starting from all nodes with indegree == 0, and we slowly progress by deleting nodes and adding the next nodes if their indegree == 0. Personally, I implemented as following:
+We will apply the method explained earlier to now find the topologically sorted sequence. A good pseudocode algorithm is given on the [wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm). Basically, we do a BFS starting from all nodes with `indegree == 0`, and we slowly progress by deleting nodes and adding the next nodes if their `indegree == 0`. Personally, I implemented as following:
 
 ```cpp
 //[O(V+E)] Given an adjacency list, returns the topologically sorted sequence.
@@ -52,4 +52,4 @@ vector<int> topological_sort(vector<vector<int>>& adj){
 
 Given an adjacency list, we set an indegree array to keep track of indegree, we then simulate removing edges by simply decrementing indegree. Since this way, indegree can reach negative values, we have to strictly check when indegree is 0, and in our final cycle check we must check if edges exist by checking if there are any positive indegrees. If so, we return an empty vector.
 
-The cycle check process makes sense because the fact that there are leftover edges can exist only when there is a cycle since there are none with indegree 0 in this case. In this case, the bfs terminates once iteration is done, but the cycles aren’t included in the topological sort so the sequence breaks down and misses certain indices. So, for safety, we return an empty vector where later we can check in our main() code for cycles by just stating topological_sort().empty() == true.
+The cycle check process makes sense because the fact that there are leftover edges can exist only when there is a cycle since there are none with indegree 0 in this case. In this case, the bfs terminates once iteration is done, but the cycles aren’t included in the topological sort so the sequence breaks down and misses certain indices. So, for safety, we return an empty vector where later we can check in our main() code for cycles by just stating `topological_sort().empty() == true`.
