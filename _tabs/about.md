@@ -44,7 +44,7 @@ P.S. I post my contest performance on [my youtube](https://www.youtube.com/chann
 ### Goals and progress
 
 It's just mostly about the grind. I hope to build foundational understanding on general topics and increase pattern recognition skills not just for programming, but for life. But if I define a few clear, objective goals:
-- [ ] Make it back to CF Expert by the end of August 2025
+- [x] Make it back to CF Expert by the end of August 2025
 - [ ] Reach CF Candidate Master by the end of 2025
 - [ ] Reach AtCoder Blue by the end of 2025
 - [ ] Reach CF Master by the end of 2026
