@@ -57,10 +57,9 @@ It's just mostly about the grind. I hope to build foundational understanding on 
 
 ### Socials
 
-- Personal email (ong ask me anything freely): [n4435898@gmail.com](mailto:n4435898@gmail.com)
-- School email (i will never read these): [020129@hafs.hs.kr](mailto:020129@hafs.hs.kr)
+- Personal email: [n4435898@gmail.com](mailto:n4435898@gmail.com)
+- School email: [020129@hafs.hs.kr](mailto:020129@hafs.hs.kr)
 - Discord: [floppa_inspector](https://discord.com/users/floppa_inspector)
-- Steam: [Floppa_Inspector](https://steamcommunity.com/profiles/76561198818575928/)
 - Instagram: [@floppa_inspector](https://www.instagram.com/floppa_inspector/)
 - YouTube: [@floppa_inspector](https://www.youtube.com/channel/UCofdtu3w620r11AhHHedwOA)
 - Apple Music: [@n4435898](https://music.apple.com/profile/n4435898)
