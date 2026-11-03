@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 5
 ---
 
-![Desktop View](assets/img/posts/about img1.png){: width="300"}
+![Desktop View](assets/img/posts/other/about img1.png){: width="300"}
 
 <hr style="border: none; height: 2px; background-color: #3f3f3fff; width: 100%;">
 

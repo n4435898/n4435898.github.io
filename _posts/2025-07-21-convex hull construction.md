@@ -12,7 +12,7 @@ math: true
 
 An intuitive property of the convex hull is that while we go counter clockwise around the edges, the edges themselves form a counter clockwise rotation. This means that construction itself should be done so that this property holds. Refer to the diagram below:
 
-![Desktop View](/assets/img/posts/convex%20hull%20construction%20img1.png){: width="400"}
+![Desktop View](/assets/img/posts/cs/convex%20hull%20construction%20img1.png){: width="400"}
 
 The $A_0 \to B \to C$ path is valid, and creates a convex hull. However, $A_0 \to H \to C$ path is invalid, since $C$ lies out of the hull that $A_0 \to H$ attempted to create.
 

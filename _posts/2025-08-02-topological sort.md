@@ -11,11 +11,11 @@ This question has been haunting me for a while now. I did study SCCs once about 
 
 Given a DAG, the topologically sorted version represents the sequence of indices of nodes so that if there is a way from node $u$ to node $v$, then $u$ appears before $v$ in the sequence. And this holds for all pairs of nodes. Below is an example from [csacademy](https://csacademy.com/lesson/topological_sorting).
 
-![Desktop View](/assets/img/posts/topological sort img1.png){: width="600"}
+![Desktop View](/assets/img/posts/cs/topological sort img1.png){: width="600"}
 
 One thing to note is that there may be multiple topological sortings.
 
-![Desktop View](/assets/img/posts/topological sort img2.png){: width="600"}
+![Desktop View](/assets/img/posts/cs/topological sort img2.png){: width="600"}
 
 However there is always at least one in a DAG. This can be proved by induction since there will always be a node with in-degree 0 in a DAG. We place that at the front then remove it, and topologically apply. So there will always be at least one topological sorting given a DAG. Kahn’s algorithm functions based on this method.
 

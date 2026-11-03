@@ -7,11 +7,11 @@ tags: [algorithm guide, cs]
 
 ## Polygon Sectoring
 
-A prerequisite is knowing that we clearly have a polygon, since if not the problem doesn’t even hold. We also have to have a clear polygon constructed. Refer to [this page]({{site.url}}/posts/convex-hull-construction/) for more information on that topic.
+A prerequisite is knowing that we clearly have a polygon, since if not the problem doesn’t even hold. We also have to have a clear polygon constructed. Refer to [this page]({{site.url}}/posts/cs/convex-hull-construction/) for more information on that topic.
 
 Also note that following our method of construction, we already have a good order so that the leftmost bottommost point is set as $\text{hull}[0]$. Setting this as a sort of “axis”, we can now iterate through our hull knowing we can sector as following:
 
-![Desktop View](/assets/img/posts/point in on convex hull img1.png){: width="600"}
+![Desktop View](/assets/img/posts/cs/point in on convex hull img1.png){: width="600"}
 
 Basically, we can divide the polygon into $n-2$ sectors. Note that this works for the most minimum case, where $n=3$ as well. So, we can simplify the point in polygon check into a few steps:
 
