@@ -2,7 +2,7 @@
 title: "Convex Hull Construction"
 date: 2025-07-21 13:00:00 +0900
 categories: [geometry, convex hull]
-tags: [algorithm guide]
+tags: [algorithm guide, cs]
 math: true
 ---
 
