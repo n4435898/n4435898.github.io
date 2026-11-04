@@ -1,7 +1,7 @@
 ---
 title: Point in/on Convex Hull
 date: 2025-07-21 16:00:00 +0900
-categories: [algorithm guide]
+categories: [algorithm guide, geometry]
 tags: [geometry, convex hull, cs]
 ---
 
