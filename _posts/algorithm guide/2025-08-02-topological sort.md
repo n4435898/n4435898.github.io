@@ -1,8 +1,8 @@
 ---
 title: Topological Sorting and Kahn's Implementation
 date: 2025-08-02 10:31:00 +0900
-categories: [graph theory, DAG]
-tags: [algorithm guide, cs]
+categories: [algorithm guide]
+tags: [graph theory, DAG, cs]
 ---
 
 ## What is topological sorting?

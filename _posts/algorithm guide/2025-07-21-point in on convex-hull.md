@@ -1,8 +1,8 @@
 ---
 title: Point in/on Convex Hull
 date: 2025-07-21 16:00:00 +0900
-categories: [geometry, convex hull]
-tags: [algorithm guide, cs]
+categories: [algorithm guide]
+tags: [geometry, convex hull, cs]
 ---
 
 ## Polygon Sectoring

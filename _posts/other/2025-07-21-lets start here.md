@@ -1,8 +1,8 @@
 ---
 title: "Let's start here."
 date: 2025-07-21 00:00:00 +0900
-categories: [life]
-tags: [misc.]
+categories: [misc.]
+tags: [life]
 comments: false
 ---
 
