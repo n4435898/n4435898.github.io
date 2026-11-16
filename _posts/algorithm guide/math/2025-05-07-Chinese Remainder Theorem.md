@@ -39,7 +39,7 @@ $$
 
 Where $a_i = x (\mod{m_i})$
 
-**[Solution for Two Moduli]**
+# Solution for Two Moduli
 
 At first the solution seems really confusing and difficult. I had trouble getting a grasp alone.
 
