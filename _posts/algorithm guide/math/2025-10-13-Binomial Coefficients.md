@@ -1,6 +1,6 @@
 ---
 title: Binomial Coefficients
-date: 2025-08-02 19:00:00 +0900
+date: 2025-10-13 19:00:00 +0900
 categories: [algorithm guide, math]
 tags: [cs, math, combinatorics]
 ---
