@@ -19,6 +19,8 @@ I'm mostly an ordinary kid. Highschool life is as goes; I have fun with my frien
 
 It's mostly for noting down my thoughts because I learn a lot when expressing and reviewing my own thoughts. I also want to add my own interpretation to maybe help others struggling to understand, and to view my own progress. You can read this for more on [why I started this blog]({{site.url}}/posts/lets-start-here/)
 
+Additionally, this blog has content from my personal study notes dating back to 2024, but I wanted to share them on this blog.
+
 P.S. I post my contest performance on [my youtube](https://www.youtube.com/channel/UCofdtu3w620r11AhHHedwOA) along with problem solving and topic videos/streams just like I do in my blog, so go check that out!
 <br><br>
 <hr style="border: none; height: 2px; background-color: #3f3f3fff; width: 100%;">
