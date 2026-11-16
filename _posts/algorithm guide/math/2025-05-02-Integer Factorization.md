@@ -158,7 +158,7 @@ Let the prime factorization of a number be $n = pq$. You follow a pseudo-random 
 
 We are not interested in the sequence itself, but the sequence $\mod p$. Because of the modulo, the sequence will converge into a loop. The birthday paradox suggests that the expected number of elements until a loop is $O(\max(\sqrt{p}, \sqrt[4]n))$
 
-![Desktop View](/assets/img/posts/cs/integer-factorization-1.jpeg){: width="400"}
+![Desktop View](/assets/img/posts/cs/integer-factorization-1.png){: width="400"}
 
 The algorithm gets its name from the rho($\rho$) shape that the sequence creates.
 
