@@ -1,5 +1,5 @@
 ---
-title: 
+title: LCA in logN
 date: 2025-02-09 12:00:00 +0900
 categories: [data structure, tree]
 tags: [cs, LCA, tree]
